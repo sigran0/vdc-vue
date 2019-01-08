@@ -1,43 +1,24 @@
 <template>
     <div id="app">
-        <Navbar></Navbar>
+        <TitleBar />
         <div class="container">
-            <VideoArea class="video_margin d-flex justify-content-center" />
-            <ul>
-                <li v-for="qa in getQaList">
-                    {{ qa.index }}
-                </li>
-            </ul>
-            <button type="submit" class="btn btn-primary w-100 button_margin">
-                Submit
-            </button>
+            <router-view />
         </div>
+        <Navbar />
     </div>
 </template>
 
 <script>
-import VideoArea from './components/VideoArea'
-import Navbar from './components/Navbar'
-import TextArea from './components/TextArea'
 
-import { mapGetters, mapActions } from 'vuex'
+import Navbar from './components/BottomNavigation'
+import TitleBar from './components/TitleBar'
 
 export default {
+    // eslint-disable-next-line vue/name-property-casing
     name: 'app',
     components: {
-        Navbar,
-        VideoArea,
-        TextArea
-    },
-    beforeMount () {
-        this.initialize()
-    },
-    mounted () {
-
-    },
-    methods: {
-        ...mapActions(['initialize']),
-        ...mapGetters(['getQa', 'getQaSize', 'getQaList'])
+        TitleBar,
+        Navbar
     }
 }
 </script>
@@ -51,18 +32,4 @@ export default {
     color: #2c3e50;
 }
 
-.video_margin {
-    margin-bottom: 30px;
-    margin-top: 30px;
-}
-
-.card_margin {
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-
-.button_margin {
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
 </style>

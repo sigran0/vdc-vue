@@ -1,20 +1,21 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
+import router from './router'
+import Vuetify from 'vuetify'
 
-import 'expose-loader?$!expose-loader?jQuery!jquery'
-
-import 'bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'vuetify/dist/vuetify.min.css'
 
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 
 Vue.use(VueVideoPlayer)
+Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
 new Vue({
   store,
-  render: h => h(App)
+  render: h => h(App),
+  router
 }).$mount('#app')
