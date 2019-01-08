@@ -174,7 +174,7 @@ export default {
                 }
                 this.setQnA(qna)
                 this.setQnaState({ index: this.index, currentState: true })
-                this.$emit('closeAll', true)
+                this.$EventBus.$emit('closeAll', this.index)
             }
             this.$v.$touch()
         },

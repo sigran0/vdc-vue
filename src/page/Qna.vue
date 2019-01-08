@@ -7,6 +7,7 @@
             <v-expansion-panel
                     inset
                     v-model="panel"
+                    expand
             >
                 <v-expansion-panel-content
                     v-for="(item, i) in 5"
@@ -29,7 +30,7 @@
         </v-layout>
         <v-layout row wrap justify-center>
             <v-flex>
-                <v-btn class="button_margin">SUBMIT</v-btn>
+                <v-btn class="button_margin" @click="onSubmit">SUBMIT</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
@@ -39,13 +40,14 @@
 
 import VideoArea from '../components/VideoArea'
 import InputForm from '../components/InputForm'
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
+
 export default {
     name: 'Qna',
     components: { InputForm, VideoArea },
     data () {
         return {
-            panel: [],
+            panel: [false, false, false, false, false],
             items: 5
         }
     },
@@ -54,16 +56,21 @@ export default {
             qnaState: state => state.FormState.qnaState
         })
     },
-    mounted () {
-        this.$on('closeAll', () => {
-            console.log('hello')
+    created () {
+        this.$EventBus.$on('closeAll', (index) => {
             this.closeAll()
+            console.log('good')
         })
     },
     methods: {
         ...mapGetters(['getQaList']),
+        ...mapActions(['showSnackbar']),
         closeAll () {
             this.panel = []
+        },
+        onSubmit () {
+            const params = { title: 'hello World' }
+            this.showSnackbar(params)
         }
     }
 }

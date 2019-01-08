@@ -14,6 +14,8 @@ Vue.use(VueVideoPlayer)
 Vue.use(Vuetify)
 Vue.use(Vuex)
 
+Vue.prototype.$EventBus = new Vue()
+
 Vue.config.productionTip = false
 
 new Vue({

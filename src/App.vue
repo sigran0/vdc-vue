@@ -4,6 +4,7 @@
         <div class="container container-margin">
             <router-view />
         </div>
+        <Snackbar />
         <Navbar/>
     </div>
 </template>
@@ -12,6 +13,7 @@
 
 import Navbar from './components/BottomNavigation'
 import TitleBar from './components/TitleBar'
+import Snackbar from './components/Snackbar'
 
 import { mapActions } from 'vuex'
 
@@ -19,11 +21,11 @@ export default {
     // eslint-disable-next-line vue/name-property-casing
     name: 'app',
     components: {
+        Snackbar,
         TitleBar,
         Navbar
     },
     beforeMount () {
-        console.log('call beforeMount')
         this.initialize()
     },
     methods: {

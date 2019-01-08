@@ -3,7 +3,7 @@ import Vue from 'vue'
 
 const state = {
     currentTargetQAIndex: 0,
-    currentTargetPage: 'Home',
+    currentTargetPage: 0,
     qnaState: [false, false, false, false, false]
 }
 
@@ -27,7 +27,6 @@ const actions = {
             index: index,
             currentState: currentState
         }
-        console.log(params)
         commit('SET_QNA_STATE', params)
     }
 }

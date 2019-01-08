@@ -1,6 +1,5 @@
 <template>
     <v-bottom-nav
-            :active.sync="bottomNav"
             :value="true"
             :app="true"
             color="red lighten-2"
@@ -29,12 +28,7 @@
 
 <script>
     export default {
-        name: 'Navbar',
-        data () {
-            return {
-                bottomNav: 'recent'
-            }
-        }
+        name: 'Navbar'
     }
 </script>
 
