@@ -18,22 +18,38 @@ const mutations = {
             }
             state.qaList.push(qaPair)
         }
-        console.log('시발', state.qaList)
     },
-    SET_QA: function (state, { index, question, answer1, answer2, answer3, answer4, answer5 }) {
-        state.qaList[index].index = index
-        state.qaList[index].question = question
-        state.qaList[index].answer1 = answer1
-        state.qaList[index].answer2 = answer2
-        state.qaList[index].answer3 = answer3
-        state.qaList[index].answer4 = answer4
-        state.qaList[index].answer5 = answer5
+    SET_QNA: function (state, qna) {
+        state.qaList[qna.index].index = qna.index
+        state.qaList[qna.index].question = qna.question
+        state.qaList[qna.index].answer1 = qna.answer1
+        state.qaList[qna.index].answer2 = qna.answer2
+        state.qaList[qna.index].answer3 = qna.answer3
+        state.qaList[qna.index].answer4 = qna.answer4
+        state.qaList[qna.index].answer5 = qna.answer5
+    },
+    CLEAR (state, index) {
+        state.qaList[index] = {
+            index: index,
+            question: '',
+            answer1: '',
+            answer2: '',
+            answer3: '',
+            answer4: '',
+            answer5: ''
+        }
     }
 }
 
 const actions = {
     initialize ({ commit }) {
         commit('INITIALIZE_STATE')
+    },
+    setQnA ({ commit }, qna) {
+        commit('SET_QNA', qna)
+    },
+    clearItem ({ commit }, index) {
+        commit('CLEAR', index)
     }
 }
 

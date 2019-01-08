@@ -3,6 +3,7 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 import Vuetify from 'vuetify'
+import Vuex from 'vuex'
 
 import 'vuetify/dist/vuetify.min.css'
 
@@ -11,6 +12,7 @@ import 'video.js/dist/video-js.css'
 
 Vue.use(VueVideoPlayer)
 Vue.use(Vuetify)
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
 

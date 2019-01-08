@@ -55,12 +55,16 @@
                 @input="$v.a5.$touch()"
                 @blur="$v.a5.$touch()"
         ></v-text-field>
-        <v-btn @click="clear">
-            clear
-        </v-btn>
-        <v-btn :disabled="!valid" @click="submit" dark color="cyan">
-            submit
-        </v-btn>
+        <v-layout row wrap justify-center>
+            <v-flex>
+                <v-btn @click="clear">
+                    clear
+                </v-btn>
+                <v-btn :disabled="!valid" @click="submit" dark color="cyan">
+                    submit
+                </v-btn>
+            </v-flex>
+        </v-layout>
     </form>
 </template>
 
@@ -68,6 +72,8 @@
 import Vue from 'vue'
 import Vuelidate, { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
+
+import { mapActions } from 'vuex'
 
 Vue.use(Vuelidate)
 
@@ -78,6 +84,30 @@ export default {
         index: {
             type: Number,
             required: true
+        },
+        q: {
+            type: String,
+            default: ''
+        },
+        a1: {
+            type: String,
+            default: ''
+        },
+        a2: {
+            type: String,
+            default: ''
+        },
+        a3: {
+            type: String,
+            default: ''
+        },
+        a4: {
+            type: String,
+            default: ''
+        },
+        a5: {
+            type: String,
+            default: ''
         }
     },
     validations: {
@@ -89,15 +119,8 @@ export default {
         a5: { required }
     },
     data: () => ({
-        q: '',
-        a1: '',
-        a2: '',
-        a3: '',
-        a4: '',
-        a5: '',
         valid: true
     }),
-
     computed: {
         questionErrors () {
             const errors = []
@@ -132,6 +155,7 @@ export default {
     },
 
     methods: {
+        ...mapActions(['setQnA', 'clearItem', 'setQnaState']),
         submit () {
             if (this.answer1Errors.length === 0 &&
                 this.answer2Errors.length === 0 &&
@@ -139,7 +163,18 @@ export default {
                 this.answer4Errors.length === 0 &&
                 this.answer5Errors.length === 0 &&
                 this.questionErrors.length === 0) {
-                console.log('ok')
+                const qna = {
+                    index: this.index,
+                    question: this.q,
+                    answer1: this.a1,
+                    answer2: this.a2,
+                    answer3: this.a3,
+                    answer4: this.a4,
+                    answer5: this.a5
+                }
+                this.setQnA(qna)
+                this.setQnaState({ index: this.index, currentState: true })
+                this.$emit('closeAll', true)
             }
             this.$v.$touch()
         },
@@ -151,6 +186,8 @@ export default {
             this.a3 = ''
             this.a4 = ''
             this.a5 = ''
+            this.clearItem(this.index)
+            this.setQnaState({ index: this.index, currentState: false })
         }
     }
 }

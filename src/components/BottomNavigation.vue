@@ -3,10 +3,10 @@
             :active.sync="bottomNav"
             :value="true"
             :app="true"
-            color="transparent"
+            color="red lighten-2"
     >
         <v-btn
-                color="teal"
+                color="white"
                 flat
                 value="recent"
                 to="/home"
@@ -16,7 +16,7 @@
         </v-btn>
 
         <v-btn
-                color="teal"
+                color="white"
                 flat
                 value="favorites"
                 to="/qna"

@@ -1,10 +1,10 @@
 <template>
     <div id="app">
         <TitleBar />
-        <div class="container">
+        <div class="container container-margin">
             <router-view />
         </div>
-        <Navbar />
+        <Navbar/>
     </div>
 </template>
 
@@ -13,12 +13,21 @@
 import Navbar from './components/BottomNavigation'
 import TitleBar from './components/TitleBar'
 
+import { mapActions } from 'vuex'
+
 export default {
     // eslint-disable-next-line vue/name-property-casing
     name: 'app',
     components: {
         TitleBar,
         Navbar
+    },
+    beforeMount () {
+        console.log('call beforeMount')
+        this.initialize()
+    },
+    methods: {
+        ...mapActions(['initialize'])
     }
 }
 </script>
@@ -30,6 +39,11 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+}
+
+.container-margin {
+    margin-bottom: 100px;
+    padding-bottom: 100px;
 }
 
 </style>
