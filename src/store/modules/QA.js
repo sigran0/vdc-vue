@@ -50,6 +50,30 @@ const actions = {
     },
     clearItem ({ commit }, index) {
         commit('CLEAR', index)
+    },
+    isAllComplete () {
+        let result = true
+        state.qaList.forEach((qa) => {
+            if (qa.question.length === 0) {
+                result = false
+            }
+            if (qa.answer1.length === 0) {
+                result = false
+            }
+            if (qa.answer2.length === 0) {
+                result = false
+            }
+            if (qa.answer3.length === 0) {
+                result = false
+            }
+            if (qa.answer4.length === 0) {
+                result = false
+            }
+            if (qa.answer5.length === 0) {
+                result = false
+            }
+        })
+        return result
     }
 }
 

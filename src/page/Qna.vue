@@ -18,12 +18,12 @@
                     <div slot="header">Q & A {{ item }}</div>
                     <InputForm
                             :index="i"
-                            :q.sync="getQaList()[i].question"
-                            :a1.sync="getQaList()[i].answer1"
-                            :a2.sync="getQaList()[i].answer2"
-                            :a3.sync="getQaList()[i].answer3"
-                            :a4.sync="getQaList()[i].answer4"
-                            :a5.sync="getQaList()[i].answer5"
+                            :q.sync="qaList[i].question"
+                            :a1.sync="qaList[i].answer1"
+                            :a2.sync="qaList[i].answer2"
+                            :a3.sync="qaList[i].answer3"
+                            :a4.sync="qaList[i].answer4"
+                            :a5.sync="qaList[i].answer5"
                     />
                 </v-expansion-panel-content>
             </v-expansion-panel>
@@ -54,6 +54,9 @@ export default {
     computed: {
         ...mapState({
             qnaState: state => state.FormState.qnaState
+        }),
+        ...mapGetters({
+            qaList: 'getQaList'
         })
     },
     created () {
@@ -63,14 +66,20 @@ export default {
         })
     },
     methods: {
-        ...mapGetters(['getQaList']),
-        ...mapActions(['showSnackbar']),
+        ...mapActions(['showSnackbar', 'isAllComplete']),
         closeAll () {
             this.panel = []
         },
         onSubmit () {
-            const params = { title: 'hello World' }
-            this.showSnackbar(params)
+            this.isAllComplete().then((result) => {
+                if (result === true) {
+                    const params = { title: 'Thank you for your effort.' }
+                    this.showSnackbar(params)
+                } else {
+                    const params = { title: 'Please enter all items', color: 'red' }
+                    this.showSnackbar(params)
+                }
+            })
         }
     }
 }
