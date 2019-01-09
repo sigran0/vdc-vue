@@ -5,6 +5,7 @@
                 class="item-margin"
                 v-model="q"
                 :error-messages="questionErrors"
+                color="orange lighten-1"
                 label="Question"
                 required
                 @input="$v.q.$touch()"
@@ -14,7 +15,8 @@
                 class="item-margin"
                 v-model="a1"
                 :error-messages="answer1Errors"
-                label="Answer 1"
+                label="True Answer"
+                color="cyan lighten-1"
                 required
                 @input="$v.a1.$touch()"
                 @blur="$v.a1.$touch()"
@@ -23,7 +25,8 @@
                 class="item-margin"
                 v-model="a2"
                 :error-messages="answer2Errors"
-                label="Answer 2"
+                color="red lighten-1"
+                label="Fake Answer 1"
                 required
                 @input="$v.a2.$touch()"
                 @blur="$v.a2.$touch()"
@@ -32,7 +35,8 @@
                 class="item-margin"
                 v-model="a3"
                 :error-messages="answer3Errors"
-                label="Answer 3"
+                color="red lighten-1"
+                label="Fake Answer 2"
                 required
                 @input="$v.a3.$touch()"
                 @blur="$v.a3.$touch()"
@@ -41,7 +45,8 @@
                 class="item-margin"
                 v-model="a4"
                 :error-messages="answer4Errors"
-                label="Answer 4"
+                color="red lighten-1"
+                label="Fake Answer 3"
                 required
                 @input="$v.a4.$touch()"
                 @blur="$v.a4.$touch()"
@@ -50,7 +55,8 @@
                 class="item-margin"
                 v-model="a5"
                 :error-messages="answer5Errors"
-                label="Answer 5"
+                color="red lighten-1"
+                label="Fake Answer 4"
                 required
                 @input="$v.a5.$touch()"
                 @blur="$v.a5.$touch()"
