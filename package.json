@@ -9,10 +9,13 @@
   },
   "dependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
+    "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
     "jquery": "^3.3.1",
+    "plyr": "^3.4.7",
     "popper.js": "^1.14.6",
     "vue": "^2.5.21",
+    "vue-plyr": "^5.0.4",
     "vue-router": "^3.0.2",
     "vue-video-player": "^5.0.2",
     "vuelidate": "^0.7.4",

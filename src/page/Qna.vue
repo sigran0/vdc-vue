@@ -1,7 +1,7 @@
 <template>
     <v-container grid-list-md>
         <v-layout row wrap justify-center>
-            <video-area class="video-margin"/>
+            <video-area class="video-margin" :video-url="videoUrl"/>
         </v-layout>
         <v-layout row wrap justify-center>
             <v-expansion-panel
@@ -53,7 +53,8 @@ export default {
     },
     computed: {
         ...mapState({
-            qnaState: state => state.FormState.qnaState
+            qnaState: state => state.FormState.qnaState,
+            videoUrl: state => state.QA.targetVideoUrl
         }),
         ...mapGetters({
             qaList: 'getQaList'
@@ -65,12 +66,16 @@ export default {
             console.log('good')
         })
     },
+    mounted () {
+        this.fetchVideoUrl()
+    },
     methods: {
-        ...mapActions(['showSnackbar', 'isAllComplete']),
+        ...mapActions(['showSnackbar', 'isAllComplete', 'fetchVideoUrl']),
         closeAll () {
             this.panel = []
         },
         onSubmit () {
+            console.log(this.videoUrl)
             this.isAllComplete().then((result) => {
                 if (result === true) {
                     const params = { title: 'Thank you for your effort.' }

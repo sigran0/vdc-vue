@@ -1,7 +1,10 @@
 
+import api from '../../api'
+
 const state = {
     qaSize: 5,
-    qaList: []
+    qaList: [],
+    targetVideoUrl: ''
 }
 
 const mutations = {
@@ -38,6 +41,9 @@ const mutations = {
             answer4: '',
             answer5: ''
         }
+    },
+    SET_VIDEO_URL (state, videoUrl) {
+        state.targetVideoUrl = videoUrl
     }
 }
 
@@ -74,13 +80,22 @@ const actions = {
             }
         })
         return result
+    },
+    fetchVideoUrl ({ commit }) {
+        api.getRandomItem()
+            .then((res) => {
+                const videoUrl = res.data.data.videoUrl
+                //  const vttUrl = res.data.data.vttUrl
+                commit('SET_VIDEO_URL', videoUrl)
+            })
     }
 }
 
 const getters = {
     getQa: (index) => state.qaList[index],
     getQaList: () => state.qaList,
-    getQaSize: () => state.qaSize
+    getQaSize: () => state.qaSize,
+    getVideoUrl: () => state.targetVideoUrl
 }
 
 export default {

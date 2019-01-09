@@ -10,9 +10,13 @@ import 'vuetify/dist/vuetify.min.css'
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 
+import axios from 'axios'
+
 Vue.use(VueVideoPlayer)
 Vue.use(Vuetify)
 Vue.use(Vuex)
+
+Vue.prototype.$http = axios
 
 Vue.prototype.$EventBus = new Vue()
 
