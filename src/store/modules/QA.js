@@ -48,6 +48,13 @@ const mutations = {
     },
     SET_SUBTITLE_URL (state, subtitleUrl) {
         state.targetSubtitleUrl = subtitleUrl
+    },
+    COMMIT_QNA (state) {
+        console.log('list: ', state.qaList)
+        api.postCommitItem(state.qaList)
+            .then((result) => {
+                console.log(result)
+            })
     }
 }
 
@@ -88,12 +95,15 @@ const actions = {
     fetchVideoUrl ({ commit }) {
         api.getRandomItem()
             .then((res) => {
-                const videoUrl = res.data.data.videoUrl
-                const subtitleUrl = res.data.data.vttUrl
+                const videoUrl = res.data.videoUrl
+                const subtitleUrl = res.data.vttUrl
                 //  const vttUrl = res.data.data.vttUrl
                 commit('SET_VIDEO_URL', videoUrl)
                 commit('SET_SUBTITLE_URL', subtitleUrl)
             })
+    },
+    commitQnA ({ commit }) {
+        commit('COMMIT_QNA')
     }
 }
 

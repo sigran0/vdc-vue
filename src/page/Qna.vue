@@ -71,7 +71,7 @@ export default {
         this.fetchVideoUrl()
     },
     methods: {
-        ...mapActions(['showSnackbar', 'isAllComplete', 'fetchVideoUrl']),
+        ...mapActions(['showSnackbar', 'isAllComplete', 'fetchVideoUrl', 'commitQnA']),
         closeAll () {
             this.panel = []
         },
@@ -81,6 +81,7 @@ export default {
                 if (result === true) {
                     const params = { title: 'Thank you for your effort.' }
                     this.showSnackbar(params)
+                    this.commitQnA()
                 } else {
                     const params = { title: 'Please enter all items', color: 'red' }
                     this.showSnackbar(params)
