@@ -4,7 +4,8 @@ import api from '../../api'
 const state = {
     qaSize: 5,
     qaList: [],
-    targetVideoUrl: ''
+    targetVideoUrl: '',
+    targetSubtitleUrl: ''
 }
 
 const mutations = {
@@ -44,6 +45,9 @@ const mutations = {
     },
     SET_VIDEO_URL (state, videoUrl) {
         state.targetVideoUrl = videoUrl
+    },
+    SET_SUBTITLE_URL (state, subtitleUrl) {
+        state.targetSubtitleUrl = subtitleUrl
     }
 }
 
@@ -85,8 +89,10 @@ const actions = {
         api.getRandomItem()
             .then((res) => {
                 const videoUrl = res.data.data.videoUrl
+                const subtitleUrl = res.data.data.vttUrl
                 //  const vttUrl = res.data.data.vttUrl
                 commit('SET_VIDEO_URL', videoUrl)
+                commit('SET_SUBTITLE_URL', subtitleUrl)
             })
     }
 }

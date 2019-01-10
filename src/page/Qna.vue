@@ -1,7 +1,7 @@
 <template>
     <v-container grid-list-md>
         <v-layout row wrap justify-center>
-            <video-area class="video-margin" :video-url="videoUrl"/>
+            <video-area class="video-margin" v-if="videoUrl !== ''" :video-url="videoUrl" :subtitle-url="subtitleUrl"/>
         </v-layout>
         <v-layout row wrap justify-center>
             <v-expansion-panel
@@ -54,7 +54,8 @@ export default {
     computed: {
         ...mapState({
             qnaState: state => state.FormState.qnaState,
-            videoUrl: state => state.QA.targetVideoUrl
+            videoUrl: state => state.QA.targetVideoUrl,
+            subtitleUrl: state => state.QA.targetSubtitleUrl
         }),
         ...mapGetters({
             qaList: 'getQaList'

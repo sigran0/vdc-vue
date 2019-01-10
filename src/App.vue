@@ -2,7 +2,9 @@
     <div id="app">
         <TitleBar />
         <div class="container container-margin">
-            <router-view />
+            <transition :name="transitionName">
+                <router-view class="child-view"/>
+            </transition>
         </div>
         <Snackbar />
         <Navbar/>
@@ -25,6 +27,21 @@ export default {
         TitleBar,
         Navbar
     },
+    data () {
+        return {
+            transitionName: 'slide-left'
+        }
+    },
+    watch: {
+        '$route' (to, from) {
+            if (from.path !== '/qna') {
+                this.transitionName = 'slide-left'
+            } else {
+                this.transitionName = 'slide-right'
+            }
+            console.log(this.transitionName)
+        }
+    },
     beforeMount () {
         this.initialize()
     },
@@ -46,6 +63,27 @@ export default {
 .container-margin {
     margin-bottom: 100px;
     padding-bottom: 100px;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s ease;
+}
+.fade-enter, .fade-leave-active {
+    opacity: 0;
+}
+.child-view {
+    position: absolute;
+    transition: all .5s cubic-bezier(.55,0,.1,1);
+}
+.slide-left-enter, .slide-right-leave-active {
+    opacity: 0;
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+    opacity: 0;
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0);
 }
 
 </style>

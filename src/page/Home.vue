@@ -1,18 +1,20 @@
 <template>
-    <v-stepper v-model="cursor" vertical dark>
+    <v-stepper v-model="cursor" dark vertical color="primary lighten-2">
         <div v-for="(item, index) in noticeList"
             :key="index"
         >
-            <v-stepper-step :complete="cursor > index + 1" :step="index + 1">
-                {{ item.title }}
+            <v-stepper-step color="deep-purple darken-2" :complete="cursor > index + 1" :step="index + 1">
+                <v-btn v-btn flat large color="primary" @click="cursor = index + 1">
+                    {{ item.title }}
+                </v-btn>
             </v-stepper-step>
             <v-stepper-content :step="index + 1">
-                <v-card v-for="(content, contentIndex) in item.contents" :key="contentIndex" color="red lighten-2" class="mb-5">
+                <v-card v-for="(content, contentIndex) in item.contents" :key="contentIndex" color="deep-purple lighten-1" class="mb-5">
                     <v-card-text class="text-sm-left">
                         {{ content }}
                     </v-card-text>
                 </v-card>
-                <v-btn color="primary" @click="cursor = index + 2">Continue</v-btn>
+                <v-btn color="deep-purple lighten-1" @click="cursor = index + 2">Continue</v-btn>
             </v-stepper-content>
         </div>
     </v-stepper>

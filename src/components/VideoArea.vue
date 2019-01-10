@@ -1,48 +1,35 @@
 
 <template>
     <div>
-        <!--<video-player-->
-            <!--class="video-player-box"-->
-            <!--ref="videoPlayer"-->
-            <!--:options="playerOptions"-->
-            <!--:playsinline="true"-->
-            <!--/>-->
-        <vue-plyr>
-            <video id="player" :src="videoUrl">
-            </video>
-        </vue-plyr>
+        <video controls preload="auto" loop autoplay>
+            <source :src="videoUrl" type="video/mp4">
+            <track kind="subtitles" srclang="en" label="English" :src="subtitleUrl" default >
+        </video>
     </div>
 </template>
 
 <script>
-    // import 'video.js/dist/video-js.css'
-    // import { videoPlayer } from 'vue-video-player'
-
-    import Vue from 'vue'
-    import VuePlyr from 'vue-plyr'
-
-    Vue.use(VuePlyr)
-
     export default {
         name: 'VideoArea',
-        // components: {
-        //     videoPlayer
-        // },
         props: {
-            videoUrl: String
+            videoUrl: String,
+            subtitleUrl: String
         },
-        computed: {
-            player () {
-                return this.$refs.player.player
+        data () {
+            return {
+                player: {}
             }
         },
         watch: {
-            videoUrl: {
-                handler: function (videoId) {
-                    console.log('new video id', videoId)
-                    console.log(this.player)
-                    this.player.play()
-                }
+            videoUrl: 'updateVideoUrl',
+            subtitleUrl: 'updateSubtitleUrl'
+        },
+        methods: {
+            updateVideoUrl (videoUrl) {
+                this.videoUrl = videoUrl
+            },
+            updateSubtitleUrl (subtitleUrl) {
+                this.subtitleUrl = subtitleUrl
             }
         }
     }
