@@ -2,13 +2,15 @@
 import Vue from 'vue'
 import Home from './page/Home'
 import Qna from './page/Qna'
+import Start from './page/Start'
 
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/', redirect: '/home' },
+    { path: '/', redirect: '/start' },
+    { path: '/start', component: Start, props: (route) => ({ batch: route.query.batch }) },
     { path: '/home', component: Home },
     { path: '/qna', component: Qna }
 ]

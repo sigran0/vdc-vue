@@ -5,7 +5,8 @@ const state = {
     qaSize: 5,
     qaList: [],
     targetVideoUrl: '',
-    targetSubtitleUrl: ''
+    targetSubtitleUrl: '',
+    batch: 0
 }
 
 const mutations = {
@@ -49,12 +50,16 @@ const mutations = {
     SET_SUBTITLE_URL (state, subtitleUrl) {
         state.targetSubtitleUrl = subtitleUrl
     },
-    COMMIT_QNA (state) {
-        console.log('list: ', state.qaList)
-        api.postCommitItem(state.qaList)
-            .then((result) => {
-                console.log(result)
-            })
+    SET_BATCH (state, batch) {
+        state.batch = batch
+    },
+    INITIALIZE_QA (state) {
+        state.qaSize = 5
+        state.qaList = []
+        state.targetVideoUrl = ''
+        state.targetSubtitleUrl = ''
+        state.batch = 0
+        mutations.INITIALIZE_STATE(state)
     }
 }
 
@@ -102,8 +107,17 @@ const actions = {
                 commit('SET_SUBTITLE_URL', subtitleUrl)
             })
     },
-    commitQnA ({ commit }) {
-        commit('COMMIT_QNA')
+    commitQnA () {
+        return api.postCommitItem(state.batch, state.qaList)
+            .then((data) => {
+                return data.data.token
+            })
+    },
+    setBatch ({ commit }, batch) {
+        commit('SET_BATCH', batch)
+    },
+    initializeQA ({ commit }) {
+        commit('INITIALIZE_QA')
     }
 }
 

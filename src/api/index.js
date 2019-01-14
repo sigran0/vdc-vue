@@ -23,11 +23,12 @@ export default {
                 })
         })
     },
-    postCommitItem: (items) => {
+    postCommitItem: (batch, items) => {
         const targetUrl = 'api/commitItem'
         let baseUrl = makeBaseUrl(targetUrl)
         return new Promise((resolve, reject) => {
             axios.post(baseUrl, {
+                    batch: batch,
                     items: items
                 })
                 .then((res) => {

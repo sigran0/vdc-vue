@@ -73,6 +73,7 @@ export default {
 }
 .child-view {
     position: absolute;
+    float: left;
     transition: all .5s cubic-bezier(.55,0,.1,1);
 }
 .slide-left-enter, .slide-right-leave-active {

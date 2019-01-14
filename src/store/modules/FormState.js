@@ -15,6 +15,11 @@ const mutations = {
         const index = params.index
         const currentState = params.currentState
         Vue.set(state.qnaState, index, currentState)
+    },
+    INITIALIZE_FORM_STATE (state) {
+        state.currentTargetQAIndex = 0
+        state.currentTargetPage = 0
+        state.qnaState = [false, false, false, false, false]
     }
 }
 
@@ -28,6 +33,9 @@ const actions = {
             currentState: currentState
         }
         commit('SET_QNA_STATE', params)
+    },
+    initializeFormState ({ commit }) {
+        commit('INITIALIZE_FORM_STATE')
     }
 }
 

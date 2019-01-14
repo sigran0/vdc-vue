@@ -4,7 +4,7 @@
             :key="index"
         >
             <v-stepper-step color="deep-purple darken-2" :complete="cursor > index + 1" :step="index + 1">
-                <v-btn v-btn flat large color="primary" @click="cursor = index + 1">
+                <v-btn flat large color="primary" @click="cursor = index + 1">
                     {{ item.title }}
                 </v-btn>
             </v-stepper-step>
