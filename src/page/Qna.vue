@@ -63,7 +63,6 @@
         </v-dialog>
         <v-layout row justify-center>
             <v-dialog v-model="alertDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-                <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn>
                 <v-card>
                     <v-card-title class="headline">Thank you for your efforts.</v-card-title>
                     <v-card-text>
